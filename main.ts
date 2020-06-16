@@ -1,5 +1,5 @@
+
 scene.setBackgroundImage(img`
-    
     9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
     9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
     9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
@@ -140,53 +140,50 @@ let player = sprites.create(img`
     . . . . . f f f f f f . . . . .
     . . . . . f f . . f f . . . . .
 `, SpriteKind.Player)
+
 controller.moveSprite(player)
-let duck=sprites.create(img`
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+info.setScore(0)
+info.startCountdown(10)
+
+let duck = sprites.create(img`
+    . . . . . . . . . . . . . . . .
     . . . . . . . . . . b 5 b . . .
     . . . . . . . . . b 5 b . . . .
     . . . . . . b b b b b b . . . .
     . . . . . b b 5 5 5 5 5 b . . .
-    . . . . b b 5 d 1 f 5 d 4 c . .
-    . . . . b 5 5 1 f f d d 4 4 4 b
-    . . . . b 5 5 d f b 4 4 4 4 b .
-    . . . b d 5 5 5 5 4 4 4 4 b . .
-    . b b d d d 5 5 5 5 5 5 5 b . .
-    b d d d b b b 5 5 5 5 5 5 5 b .
-    c d d b 5 5 d c 5 5 5 5 5 5 b .
-    c b b d 5 d c d 5 5 5 5 5 5 b .
-    c b 5 5 b c d d 5 5 5 5 5 5 b .
-    b b c c c d d d 5 5 5 5 5 d b .
-    . . . . c c d d d 5 5 5 b b . .
-    . . . . . . c c c c c b b . . .
+    . b b b b b 5 5 5 5 5 5 5 b . .
+    . b d 5 b 5 5 5 5 5 5 5 5 b . .
+    . . b 5 5 b 5 d 1 f 5 d 4 f . .
+    . . b d 5 5 b 1 f f 5 4 4 c . .
+    b b d b 5 5 5 d f b 4 4 4 4 4 b
+    b d d c d 5 5 b 5 4 4 4 4 4 b .
+    c d d d c c b 5 5 5 5 5 5 5 b .
+    c b d d d d d 5 5 5 5 5 5 5 b .
+    . c d d d d d d 5 5 5 5 5 d b .
+    . . c b d d d d d 5 5 5 b b . .
+    . . . c c c c c c c c b b . . .
 `, SpriteKind.Enemy)
+
 duck.setPosition(Math.randomRange(0, scene.screenWidth()), Math.randomRange(0, scene.screenHeight()))
 
-sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function(sprite, otherSprite) {
-    duck.setPosition(Math.randomRange(0, scene.screenWidth()), Math.randomRange(0, scene.screenHeight()))  
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function () {
+    duck.setPosition(Math.randomRange(0, scene.screenWidth()), Math.randomRange(0, scene.screenHeight()))
+    info.changeScoreBy(1)
+})
+
+game.onUpdate(function () {
+    if (player.x() < 0) {
+        player.setPosition(scene.screenWidth(), player.y())
+    }
+    if (player.x() > scene.screenWidth()) {
+        player.setPosition(0, player.y())
+    }
+
+    if (player.y() < 0) {
+        player.setPosition(player.x(), scene.screenHeight())
+    }
+
+
+
 })
